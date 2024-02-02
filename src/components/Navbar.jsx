@@ -7,10 +7,11 @@ export default function Navbar() {
       style={{
         display: "flex",
         justifyContent: "space-between",
-        paddingTop: "10px",
+        padding: "10px",
+        background: "#000000"
       }}
     >
-      <Typography variant="h5">Coursera</Typography>
+      <Typography  sx={{ textDecoration: "none"}} component={Link} to="/" color={"whitesmoke"} variant="h5" fontWeight={"bold"} >Course Selling App</Typography>
       <div
         style={{
           display: "flex",
@@ -19,7 +20,7 @@ export default function Navbar() {
       >
         <Button sx={{marginRight: "5px"}}component={Link} to="/login" variant="contained">Login</Button>
           
-        <Button component={Link} to="/signup" variant="contained">Signup</Button>
+        <Button sx={{ marginRight: "7px"}} component={Link} to="/signup" variant="contained">Signup</Button>
       </div>
     </div>
   );

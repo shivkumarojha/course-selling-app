@@ -34,11 +34,13 @@ function LoginPage() {
             sx={{ margin: "10px" }}
             variant="standard"
             label="Email"
+            type="email"
           ></TextField>
           <TextField
             sx={{ margin: "10px" }}
             variant="standard"
             label="Password"
+            type="password"
           ></TextField>
           <Button
             sx={{
