@@ -1,11 +1,12 @@
+import { Typography } from "@mui/material";
 import { Link } from "react-router-dom";
+import { Outlet } from "react-router-dom";
+import App from "../App";
+import LoginPage from "./LoginPage";
 export default function HomePage() {
   return (
     <div>
-      <h1>Home Page</h1>
-      <Link to={`login`}>Login Page</Link>
-      <br />
-      <Link to={`signup`}>Sign up</Link>
+      <App />
     </div>
   );
 }
