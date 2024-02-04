@@ -1,6 +1,6 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Typography } from "@mui/material";
-import { TextField, Button } from "@mui/material";
+import { TextField, Button, Checkbox } from "@mui/material";
 
 import { Card } from "@mui/material";
 import Navbar from "./Navbar";
@@ -11,6 +11,7 @@ export default function AddCourse() {
   const [price, setPrice] = useState("");
   const [published, setPublished] = useState(false);
   const [imageLink, setImageLink] = useState("");
+
   return (
     <div>
       <Navbar />
@@ -60,29 +61,31 @@ export default function AddCourse() {
           style={{ marginBottom: "10px" }}
           onChange={(e) => setImageLink(e.target.value)}
         ></TextField>
-        <TextField
-          variant="standard"
-          label="Published"
-          type="checkbox"
-          className="input"
-          onChange={(e) => setPublished(published ? false : true)}
-          style={{
-            marginTop: "10px",
-            marginBottom: "10px",
-            paddingBottom: "10px",
-          }}
-        ></TextField>
+        <div style={{
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "center"
+        }}>
+          <Typography variant="caption" fontWeight={"bold"}>Published</Typography>
+          <Checkbox
+              checked={published}
+            onChange={(e) => {
+              setPublished(e.target.checked)
+            }}
+          ></Checkbox>
+        </div>
+
         <Button
           variant="contained"
           color="warning"
           onClick={() => {
             const data = { title, description, price, imageLink, published };
-            const jwtToken = localStorage.getItem('token')
+            const jwtToken = localStorage.getItem("token");
             fetch("http://localhost:3000/admin/courses", {
               method: "POST",
               headers: {
                 "Content-Type": "application/json",
-                'Authorization': `Bearer ${jwtToken}`
+                Authorization: `Bearer ${jwtToken}`,
               },
               body: JSON.stringify(data),
             })
