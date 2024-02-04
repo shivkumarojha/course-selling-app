@@ -79,7 +79,13 @@ function SignupPage() {
                     body: JSON.stringify(data)
                   })
                   .then(response => {return response.json()})
-                  .then(data => console.log(data))
+                  .then(data => {
+                    console.log(data)
+                    localStorage.setItem('token', data.token)
+                    window.location = "/"
+
+                  })
+
                 }else {
                   alert("Password and confirm password are not same!!!")
                 }

@@ -6,23 +6,28 @@ import App from './App.jsx'
 import './index.css'
 import LoginPage from './components/LoginPage.jsx'
 import SignupPage from './components/SignupPage.jsx'
-
-
+import AddCourse from './components/AddCourse.jsx'
+import ShowAllCourses from './components/ShowAllCourses.jsx'
 const router = createBrowserRouter([
   {
     path: "/",
     element: <HomePage />,
-    children: [
-      {
-        path: "/login",
-        element: <LoginPage />
-      }
-    ]
-
+  },
+  {
+    path: "/login",
+    element: <LoginPage />
   },
   {
     path: "/signup", 
     element: <SignupPage />
+  },
+  {
+    path: "/admin/addcourse",
+    element: <AddCourse />
+  },
+  {
+    path: "/admin/courses",
+    element: <ShowAllCourses />
   }
 ])
 
