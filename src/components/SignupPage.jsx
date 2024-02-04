@@ -1,8 +1,14 @@
 import { Typography, Button } from "@mui/material";
+import { useState } from "react";
 import { Card } from "@mui/material";
 import { TextField } from "@mui/material";
 import Navbar from "./Navbar";
 function SignupPage() {
+  const [email, setEmail] = useState("")
+  const [password, setPassword] = useState("")
+  const [confirmPassword, setConfirmPassword] = useState("")
+  const [name, setName] = useState("")
+
   return (
     <>
       <Navbar />
@@ -37,25 +43,49 @@ function SignupPage() {
               variant="standard"
               type="email"
               label="Email"
+              onChange={e => setEmail(e.target.value)}
             ></TextField>
-            <TextField variant="standard" label="Name"></TextField>
+            <TextField 
+              variant="standard" 
+              label="Name"
+              onChange={e => setName(e.target.value)}
+              ></TextField>
             <TextField
               variant="standard"
               type="password"
               label="Password"
+              onChange={e => setPassword(e.target.value)}
             ></TextField>
             <TextField
               variant="standard"
               type="password"
               label="Confirm Password"
+              onChange={e => setConfirmPassword(e.target.value)}
             ></TextField>
             <Button
               sx={{
                 marginTop: "10px",
               }}
               variant="contained"
+              color="warning"
+              onClick={() => {
+                if(password === confirmPassword) {
+                  const data = {username: email, password, name}
+                  fetch("http://localhost:3000/admin/signup", {
+                    method: 'POST',
+                    headers: {
+                      'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(data)
+                  })
+                  .then(response => {return response.json()})
+                  .then(data => console.log(data))
+                }else {
+                  alert("Password and confirm password are not same!!!")
+                }
+              }}
             >
-              Login
+              Signup
             </Button>
           </div>
         </Card>

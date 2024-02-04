@@ -1,7 +1,11 @@
+import { useState } from "react";
 import { Typography, Button } from "@mui/material";
 import {Card} from "@mui/material";
 import { TextField } from "@mui/material";
+import { json } from "react-router-dom";
 function LoginPage() {
+  const [email, setEmail] = useState("")
+  const [password, setPassword] = useState("")
   return (
     <div
       style={{
@@ -35,18 +39,37 @@ function LoginPage() {
             variant="standard"
             label="Email"
             type="email"
+            id="email"
+            onChange={e => setEmail(e.target.value)}
           ></TextField>
           <TextField
             sx={{ margin: "10px" }}
             variant="standard"
             label="Password"
             type="password"
+            id="password"
+            onChange={e => setPassword(e.target.value)}
           ></TextField>
           <Button
             sx={{
               marginTop: "10px",
             }}
             variant="contained"
+            onClick={() => {
+              const data = { username: email, password: password };
+              fetch("http://localhost:3000/admin/login", {  
+                method: 'POST',
+                headers: {
+                  'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+              }).then(response => {return response.json()})
+              .then(data => {
+                const token = data.token
+                console.log(data)
+                localStorage.setItem("token", token)
+              })
+            }}
           >
             Login
           </Button>
