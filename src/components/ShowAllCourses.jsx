@@ -1,9 +1,11 @@
 import { useEffect, useState } from "react";
 import Navbar from "./Navbar";
-import { Card } from "@mui/material";
+import { Button, Card } from "@mui/material";
 import { Typography } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 export default function ShowAllCourses() {
   const [courses, setCourses] = useState([]);
+  const navigate = useNavigate()
   useEffect(() => {
     const token = localStorage.getItem("token");
     fetch("http://localhost:3000/admin/allcourses", {
@@ -24,19 +26,17 @@ export default function ShowAllCourses() {
   }, []);
   return (
     <div>
-      <Navbar />
-
       <div
         style={{
           display: "flex",
           justifyContent: "center",
           flexWrap: "wrap",
           margin: "10px",
-          padding: "20px"
+          padding: "20px",
         }}
       >
-      {courses.map((course) => {
-        return (
+        {courses.map((course) => {
+          return (
             <Card
               style={{
                 width: "300px",
@@ -60,10 +60,28 @@ export default function ShowAllCourses() {
                 textAlign={"center"}
                 width={"300px"}
               />
+              <div style={{ display: "flex", justifyContent: "space-evenly" }}>
+                <Button
+                  variant="contained"
+                  color="success"
+                  onClick={() => navigate(`/admin/course/${course._id}`)}
+                >
+                  Edit
+                </Button>
+                <Button
+                  variant="contained"
+                  style={{ backgroundColor: "red", marginLeft: "20px" }}
+                  onClick={() => {
+                    navigate(`/admin/course/${course._id}`);
+                  }}
+                >
+                  Delete
+                </Button>
+              </div>
             </Card>
-        );
-    })}
-    </div>
+          );
+        })}
+      </div>
     </div>
   );
 }

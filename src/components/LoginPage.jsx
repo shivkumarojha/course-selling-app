@@ -10,7 +10,6 @@ function LoginPage() {
   
   return (
     <div>
-      <Navbar />
       <div
         style={{
           paddingTop: "100px",
