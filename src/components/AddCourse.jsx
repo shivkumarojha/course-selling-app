@@ -5,6 +5,7 @@ import { TextField, Button, Checkbox } from "@mui/material";
 import { Card } from "@mui/material";
 import Navbar from "./Navbar";
 import "../index.css";
+import axios from "axios";
 export default function AddCourse() {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
@@ -78,21 +79,27 @@ export default function AddCourse() {
         <Button
           variant="contained"
           color="warning"
-          onClick={() => {
+          onClick={async() => {
             const data = { title, description, price, imageLink, published };
-            const jwtToken = localStorage.getItem("token");
-            fetch("http://localhost:3000/admin/courses", {
-              method: "POST",
+            const token = localStorage.getItem("token");
+            // fetch("http://localhost:3000/admin/courses", {
+            //   method: "POST",
+            //   headers: {
+            //     "Content-Type": "application/json",
+            //     Authorization: `Bearer ${token}`,
+            //   },
+            //   body: JSON.stringify(data),
+            // })
+            //   .then((response) => {
+            //     return response.json();
+            //   })
+            //   .then((data) => console.log(data));
+            const response = await axios.post("http://localhost:3000/admin/courses", data, {
               headers: {
-                "Content-Type": "application/json",
-                Authorization: `Bearer ${jwtToken}`,
-              },
-              body: JSON.stringify(data),
-            })
-              .then((response) => {
-                return response.json();
-              })
-              .then((data) => console.log(data));
+                'Authorization': `Bearer ${token}`
+              }
+            });
+            console.log(response.data)
           }}
         >
           AddCourse

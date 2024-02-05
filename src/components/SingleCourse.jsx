@@ -51,7 +51,7 @@ export default function SingleCourse() {
             padding: "30px",
           }}
         >
-          <Typography variant="subtitle1" fontWeight={"bold"} textAlign={"center"} paddingBottom={2}>
+          <Typography variant="subtitle1" fontWeight={"bold"} style={{ textAlign: "center"}} paddingBottom={2}>
             {course.title}
           </Typography>
           <Typography variant="subtitle2">{course.description}</Typography>

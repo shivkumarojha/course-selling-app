@@ -3,6 +3,8 @@ import { useState } from "react";
 import { Card } from "@mui/material";
 import { TextField } from "@mui/material";
 import Navbar from "./Navbar";
+import axios from "axios";
+
 function SignupPage() {
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
@@ -68,24 +70,28 @@ function SignupPage() {
               }}
               variant="contained"
               color="warning"
-              onClick={() => {
+              onClick={async() => {
                 if(password === confirmPassword) {
                   const data = {username: email, password, name}
-                  fetch("http://localhost:3000/admin/signup", {
-                    method: 'POST',
-                    headers: {
-                      'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify(data)
-                  })
-                  .then(response => {return response.json()})
-                  .then(data => {
-                    console.log(data)
-                    localStorage.setItem('token', data.token)
-                    window.location = "/"
+                  // fetch("http://localhost:3000/admin/signup", {
+                  //   method: 'POST',
+                  //   headers: {
+                  //     'Content-Type': 'application/json'
+                  //   },
+                  //   body: JSON.stringify(data)
+                  // })
+                  // .then(response => {return response.json()})
+                  // .then(data => {
+                  //   console.log(data)
+                  //   localStorage.setItem('token', data.token)
+                  //   window.location = "/"
 
-                  })
-
+                  // })
+                  const response = await axios.post(
+                    "http://localhost:3000/admin/signup", data
+                  );
+                  localStorage.setItem('token', response.data.token)
+                  window.location = "/"
                 }else {
                   alert("Password and confirm password are not same!!!")
                 }

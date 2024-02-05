@@ -4,9 +4,14 @@ import {Card} from "@mui/material";
 import { TextField } from "@mui/material";
 import { json } from "react-router-dom";
 import Navbar from "./Navbar";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
+
+
 function LoginPage() {
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
+  const navigate = useNavigate()
   
   return (
     <div>
@@ -58,23 +63,29 @@ function LoginPage() {
                 marginTop: "10px",
               }}
               variant="contained"
-              onClick={() => {
+              onClick={async() => {
                 const data = { username: email, password: password };
-                fetch("http://localhost:3000/admin/login", {
-                  method: "POST",
-                  headers: {
-                    "Content-Type": "application/json",
-                  },
-                  body: JSON.stringify(data),
-                })
-                  .then((response) => {
-                    return response.json();
-                  })
-                  .then((data) => {
-                    const token = data.token;
-                    localStorage.setItem("token", token);
-                    window.location = "/";
-                  });
+                // fetch("http://localhost:3000/admin/login", {
+                //   method: "POST",
+                //   headers: {
+                //     "Content-Type": "application/json",
+                //   },
+                //   body: JSON.stringify(data),
+                // })
+                //   .then((response) => {
+                //     return response.json();
+                //   })
+                //   .then((data) => {
+                //     const token = data.token;
+                //     localStorage.setItem("token", token);
+                //     window.location = "/";
+                //   });
+
+                // Implementing axios
+                const response = await axios.post("http://localhost:3000/admin/login", data)
+                localStorage.setItem('token', response.data.token)
+                console.log(response.data)
+                window.location = "/"
               }}
             >
               Login

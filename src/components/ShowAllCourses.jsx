@@ -44,10 +44,10 @@ export default function ShowAllCourses() {
               }}
               variant="outlined"
             >
-              <Typography variant="subtitle1" textAlign={"center"}>
+              <Typography variant="subtitle1" style={{ textAlign: "center"}}>
                 {course.title}
               </Typography>
-              <Typography variant="subtitle2" textAlign={"center"}>
+              <Typography variant="subtitle2" style={{ textAlign: "center"}}>
                 {course.description}
               </Typography>
               <img
@@ -56,7 +56,7 @@ export default function ShowAllCourses() {
                     ? course.imageLink
                     : "https://images.unsplash.com/photo-1575936123452-b67c3203c357?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8aW1hZ2V8ZW58MHx8MHx8fDA%3D"
                 }
-                textAlign={"center"}
+                style={{ textAlign: "center"}}
                 width={"300px"}
               />
               <div style={{ display: "flex", justifyContent: "space-evenly" }}>
