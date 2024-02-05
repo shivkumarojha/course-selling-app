@@ -6,7 +6,7 @@ import { Card } from "@mui/material";
 import Navbar from "./Navbar";
 import "../index.css";
 
-export default function EditCourse({ course }) {
+export default function EditCourse({ course, setCourse }) {
   const [title, setTitle] = useState(course.title);
   const [description, setDescription] = useState(course.description);
   const [price, setPrice] = useState(course.price);
@@ -85,6 +85,7 @@ export default function EditCourse({ course }) {
           color="secondary"
           onClick={() => {
             const data = { title, description, price, imageLink, published };
+            setCourse(data)
             const jwtToken = localStorage.getItem("token");
             fetch(`http://localhost:3000/admin/courses/${course._id}`, {
               method: "PUT",

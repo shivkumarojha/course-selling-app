@@ -34,27 +34,39 @@ export default function SingleCourse() {
     return <h3>Loading ...</h3>;
   }
   return (
-
     <div>
-        <Navbar />
-        <div style={{
-            display: "flex",
-            flexWrap: "wrap",
-            justifyContent: "space-evenly",
-            paddingTop: "100px"
+      <Navbar />
+      <div
+        style={{
+          display: "flex",
+          flexWrap: "wrap",
+          justifyContent: "space-evenly",
+          paddingTop: "100px",
+        }}
+      >
+        <Card
+          key={course._id}
+          variant="outlined"
+          style={{
+            padding: "30px",
+          }}
+        >
+          <Typography variant="subtitle1" fontWeight={"bold"} textAlign={"center"} paddingBottom={2}>
+            {course.title}
+          </Typography>
+          <Typography variant="subtitle2">{course.description}</Typography>
+          <Typography fontWeight={"bold"} color="black">
+            Price: {course.price}
+          </Typography>
+          <Typography color="black">
+            Published: {course.published ? "Yes": "No"}
+          </Typography>
 
-        }}>
-          <Card key={course._id} variant="outlined" style={{
-            padding: "30px"
-          }}>
-            <Typography variant="subtitle1" fontWeight={"bold"}>{course.title}</Typography>
-            <Typography variant="subtitle2">{course.description}</Typography>
-            <Typography fontWeight={"bold"} color="black">Price: {course.price}</Typography>
-            <img src={course.imageLink} alt="" style={{width: "300px"}} />
-          </Card>
-        <EditCourse course={course}/>
-        </div>
+          <img src={course.imageLink} alt="" style={{ width: "300px" }} />
+        </Card>
+        <EditCourse course={course} setCourse={setCourse}/>
+      </div>
     </div>
-  )
+  );
 
 }

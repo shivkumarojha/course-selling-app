@@ -19,7 +19,6 @@ export default function ShowAllCourses() {
         return response.json();
       })
       .then((data) => {
-        console.log(data);
         setCourses(data);
       })
       .then(console.log(courses));

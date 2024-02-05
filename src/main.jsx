@@ -8,6 +8,7 @@ import LoginPage from './components/LoginPage.jsx'
 import SignupPage from './components/SignupPage.jsx'
 import AddCourse from './components/AddCourse.jsx'
 import ShowAllCourses from './components/ShowAllCourses.jsx'
+import SingleCourse from './components/SingleCourse.jsx'
 const router = createBrowserRouter([
   {
     path: "/",
@@ -28,6 +29,10 @@ const router = createBrowserRouter([
   {
     path: "/admin/courses",
     element: <ShowAllCourses />
+  },
+  {
+    path: "/admin/course/:courseId",
+    element: <SingleCourse />
   }
 ])
 
