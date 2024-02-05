@@ -21,7 +21,6 @@ export default function ShowAllCourses() {
       .then((data) => {
         setCourses(data);
       })
-      .then(console.log(courses));
   }, []);
   return (
     <div>
@@ -43,11 +42,18 @@ export default function ShowAllCourses() {
                 padding: "20px",
               }}
               variant="outlined"
+              key={course._id}
             >
-              <Typography variant="subtitle1" style={{ textAlign: "center"}}>
+              <Typography variant="subtitle1" style={{ textAlign: "center" }}>
                 {course.title}
               </Typography>
-              <Typography variant="subtitle2" style={{ textAlign: "center"}}>
+              <Typography
+                variant="subtitle2"
+                style={{
+                  textAlign:
+                    "centerhttps://img.freepik.com/free-vector/laptop-with-program-code-isometric-icon-software-development-programming-applications-dark-neon_39422-971.jpg",
+                }}
+              >
                 {course.description}
               </Typography>
               <img
@@ -56,7 +62,7 @@ export default function ShowAllCourses() {
                     ? course.imageLink
                     : "https://images.unsplash.com/photo-1575936123452-b67c3203c357?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8aW1hZ2V8ZW58MHx8MHx8fDA%3D"
                 }
-                style={{ textAlign: "center"}}
+                style={{ textAlign: "center" }}
                 width={"300px"}
               />
               <div style={{ display: "flex", justifyContent: "space-evenly" }}>
